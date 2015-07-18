@@ -13,18 +13,18 @@ else
   sudo git pull
 fi
 
-sudo cp -Rfu /opt/vim-ide/vim /etc/
-sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
-sudo cp -vf /opt/vim-ide/skel/.pythonrc /etc/skel/
-sudo cp -vf /opt/vim-ide/skel/.vimrc /etc/skel/
-sudo cp -vf /opt/vim-ide/profile.d/* /etc/profile.d/
+sudo cp -Rvfu /opt/vim-ide/vim /etc/
+sudo cp -vfu /opt/vim-ide/skel/.irbrc /etc/skel/
+sudo cp -vfu /opt/vim-ide/skel/.pythonrc /etc/skel/
+sudo cp -vfu /opt/vim-ide/skel/.vimrc /etc/skel/
+sudo cp -vfu /opt/vim-ide/profile.d/* /etc/profile.d/
 
 ## clone and install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ];then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   [ -e ~/.zshrc ] || cp -vf ~/.zshrc ~/.zshrc.orig
   cp -vf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-  chsh -s /bin/zsh
+  sudo chsh -s /bin/bash ${LOGNAME}
 else
   cd ~/.oh-my-zsh
   git pull

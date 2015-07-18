@@ -1,0 +1,139 @@
+" Pathogen to autoload plugins in /etc/vim/bundle and ~/.vim/bundle
+source /etc/vim/pathogen/autoload/pathogen.vim
+execute pathogen#infect('bundle/{}', '/etc/vim/bundle/{}')
+filetype plugin indent on
+
+set modeline
+
+"Syntastic Defaults
+let g:syntastic_puppet_checkers=['puppet', 'puppetlint']
+let g:syntastic_puppet_puppetlint_args = '--no-autoloader_layout-check --no-documentation-check'
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers=['perlcritic']
+let g:syntastic_perl_perlcritic_args = '-4'
+let g:syntastic_python_checkers = ['pylint']
+
+" NERDTree
+let NERDTreeShowHidden=1
+map <C-n> :NERDTreeToggle<CR>
+"autocmd vimenter * NERDTree
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Commands
+command Q qa!
+command W wa!
+command -nargs=1 E tabedit <args>
+
+" Map <C-L> (redraw screen) to also turn off search highlighting until the next search
+nnoremap <C-L> :nohl<CR><C-L>
+
+" Set <Tab> to navigate tabs
+map <Tab> :tabn<cr>
+let g:airline#extensions#tabline#enabled = 1
+
+" Set <F2> for paste mode toggle
+set pastetoggle=<F2>
+
+" Set <F3> for line number toggle
+nnoremap <F3> :set number!<CR>
+
+" Set <F8> to run puppet-lint
+function Formatting()
+    if &ft =~ "puppet"
+        normal! gg=G
+        g/=>/Tabularize/=>/
+        nohlsearch
+        "/.*\".*"\.*\&\(.*\$\)\@!.*/s/\"/\'/g
+        " Fix double quoted strings containing no variables
+        g/.*\".*"\.*\&\(.*\$\)\@!.*/ s/\"/\'/g
+        nohlsearch
+        " Fix double quoted strings containing only variable
+        g/.*=>.\"\$\:*\w*\".*/s/\"//g
+	" Fix remaining double quoted strings where
+	" variable not enclosed in {}
+	g/.*=>.\".*\".*/ s/\$\(\w*\)/\$\{\1\}/g
+        nohlsearch
+        write
+    elseif &ft == 'python'
+        set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+        normal! gg=G
+        write
+    elseif &ft == 'vim'
+        set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+        "normal! gg=G
+    elseif &ft == 'ruby'
+        set tabstop=2 expandtab shiftwidth=2 softtabstop=2
+        normal! gg=G
+        write
+        "let g:ruby_indent_access_modifier_style = 'indent'
+    elseif &ft == 'perl'
+        set tabstop=5 expandtab shiftwidth=5 softtabstop=5
+        normal! gg=G
+        write
+    endif
+endfunction
+nnoremap <F8> :call Formatting()<CR>
+
+" Load FileType defaults and custom templates
+if has("autocmd")
+    autocmd!
+    " Remove auto comment on newline or enter command
+    autocmd BufNewFile,BufReadPre,BufRead,BufReadPost * exe "set formatoptions-=cro"
+    " Puppet
+    autocmd BufRead,BufNewFile *.pp set filetype=puppet
+    autocmd BufNewFile *.pp 0r /etc/vim/templates/template.pp
+    autocmd BufNewFile *.pp exe "g/filename/s//" .expand("%:t")
+    autocmd BufNewFile *.pp exe "g/classname/s//" .expand("%:t:r")
+    " Perl
+    autocmd BufNewFile *.pl 0r /etc/vim/templates/template.pl
+    autocmd BufNewFile *.pl exe "g/filename/s//" .expand("%:t")
+    " Python
+    autocmd BufNewFile *.py 0r /etc/vim/templates/template.py
+    "autocmd BufNewFile *.py exe "g/filename/s//" .expand("%:t")
+endif
+
+" Change title of terminal window to active filename
+set title
+
+" Alwaays display lower status line
+set laststatus=2
+set statusline=%f[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+
+" Always display the tabline
+set showtabline=2
+
+" Replace tabs with spaces
+set expandtab
+
+" Do not return cursor to start of line
+set nostartofline
+
+" Colors
+"colorscheme solarized
+colorscheme koehler
+let g:airline_powerline_fonts = 1
+
+" No line wrap
+set nowrap
+
+" Syntax checking on
+syntax on
+
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
+" Display white space with a char
+set list
+
+" set listchars=trail:.
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" Always display rule
+set ruler
+
+" Always display line numbers
+"set number
+set numberwidth=4
+

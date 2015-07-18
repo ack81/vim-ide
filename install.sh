@@ -16,7 +16,7 @@ fi
 sudo cp -Rfu /opt/vim-ide/vim /etc/
 sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
 sudo cp -vf /opt/vim-ide/skel/.pythonrc /etc/skel/
-sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
+sudo cp -vf /opt/vim-ide/skel/.vimrc /etc/skel/
 sudo cp -vf /opt/vim-ide/profile.d/* /etc/profile.d/
 
 ## clone and install oh-my-zsh

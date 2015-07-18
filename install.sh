@@ -1,7 +1,50 @@
 #!/bin/bash
 
 ## check for install zsh
-sudo yum -d0 -e0 -y install zsh vim-enhanced util-linux
+sudo yum -d0 -e0 -y install \
+zsh \
+vim-enhanced \
+util-linux \
+fontconfig \
+python-pip \
+rubygems \
+ruby-irb \
+ruby-devel \
+perl-Perl-Critic \
+gcc \
+patch \
+perl \
+python-devel \
+python
+
+## pip packages
+sudo pip install --upgrade powerline-status
+sudo pip install --upgrade pylint-common
+sudo pip install --upgrade pylint
+sudo pip install --upgrade python-ldap
+
+## ruby gems
+sudo gem install puppet-lint
+sudo gem install ruby-lint
+sudo gem install bond
+sudo gem install json --platform=ruby
+sudo gem install parser
+sudo gem install ruby-beautify
+sudo gem install rgen
+sudo gem install rdoc-data
+sudo gem install rdoc
+sudo gem install pry
+sudo gem install r10k
+
+## Install powerline fonts
+if [ ! -d /usr/local/share/fonts/powerline ]; then
+  sudo git clone https://github.com/powerline/fonts.git /usr/local/share/fonts/powerline
+  sudo wget -qO /usr/local/share/fonts/powerline/PowerlineSymbols.otf \
+    https://raw.githubusercontent.com/powerline/powerline/develop/font/PowerlineSymbols.otf
+  sudo wget -qO /etc/fonts/conf.d/font/10-powerline-symbols.conf \
+    https://raw.githubusercontent.com/powerline/powerline/develop/font/10-powerline-symbols.conf
+fi
+sudo fc-cache -vf
 
 ## check for /opt/vim-ide and clone with submodules
 if [ ! -d /opt/vim-ide ];then

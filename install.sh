@@ -20,7 +20,12 @@ cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
 cp -vf /opt/vim-ide/profile.d/* /etc/profile.d/
 
 ## clone and install oh-my-zsh
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-cp ~/.zshrc ~/.zshrc.orig
-cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-chsh -s /bin/zsh
+if [ ! -d ~/oh-my-zsh ];then
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  cp ~/.zshrc ~/.zshrc.orig
+  cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+  chsh -s /bin/zsh
+else
+  cd ~/oh-my-zsh
+  git pull
+fi

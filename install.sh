@@ -13,11 +13,11 @@ else
   git pull
 fi
 
-[ ! -d /etc/vim ] && cp -vfR /opt/vim-ide/vim /etc/ || echo "SKIPPING: /etc/vim direcotry already exists"
-cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
-cp -vf /opt/vim-ide/skel/.pythonrc /etc/skel/
-cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
-cp -vf /opt/vim-ide/profile.d/* /etc/profile.d/
+[ ! -d /etc/vim ] && sudo cp -vfR /opt/vim-ide/vim /etc/ || echo "SKIPPING: /etc/vim direcotry already exists"
+sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
+sudo cp -vf /opt/vim-ide/skel/.pythonrc /etc/skel/
+sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
+sudo cp -vf /opt/vim-ide/profile.d/* /etc/profile.d/
 
 ## clone and install oh-my-zsh
 if [ ! -d ~/oh-my-zsh ];then

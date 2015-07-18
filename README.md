@@ -15,4 +15,4 @@ Vim-IDE is collection of tools that work together in the zsh shell using powerli
 
 #### via curl
 
-`curl -sk https://raw.githubusercontent.com/ack81/vim-ide/master/install.sh | sudo bash`
+`curl -sk https://raw.githubusercontent.com/ack81/vim-ide/master/install.sh | bash`

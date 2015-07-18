@@ -9,9 +9,10 @@ Vim-IDE is collection of tools that work together in the zsh shell using powerli
 
 ### Basic Installation
 
+#### submodules
+
+`git submodule update --init`
+
 #### via curl
 
-`git pull --recurse-submodules`
-#### via curl
-
-`sh -c "$(curl -fsSL https://raw.github.com/ack81/vim-ide/master/install.sh)"`
+`curl https://raw.github.com/ack81/vim-ide/master/install.sh | bash`

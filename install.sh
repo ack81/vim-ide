@@ -1,16 +1,17 @@
 #!/bin/bash
 
 ## check for install zsh
-rpm -qa zsh | grep "^zsh-" && yum -d0 -e0 -y install zsh
+[ `rpm -qa zsh | grep "^zsh-"` ] || sudo yum -d0 -e0 -y install zsh
+
 
 ## check for /opt/vim-ide and clone with submodules
 if [ ! -d /opt/vim-ide ];then
-  git clone https://github.com/ack81/vim-ide.git /opt/vim-ide
+  sudo git clone https://github.com/ack81/vim-ide.git /opt/vim-ide
   cd /opt/vim-ide
-  git submodule update --init
+  sudo git submodule update --init
 else
   cd /opt/vim-ide
-  git pull
+  sudo git pull
 fi
 
 [ ! -d /etc/vim ] && sudo cp -vfR /opt/vim-ide/vim /etc/ || echo "SKIPPING: /etc/vim direcotry already exists"

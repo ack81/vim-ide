@@ -16,5 +16,5 @@ Vim-IDE is collection of tools that work together in the zsh shell using powerli
 
 #### manual
 
-`wil update soon`
-`git submodule update --init`
+* `wil update soon`
+* `git submodule update --init`

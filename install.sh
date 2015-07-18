@@ -8,10 +8,16 @@ if [ ! -d /opt/vim-ide ];then
   git clone https://github.com/ack81/vim-ide.git /opt/vim-ide
   cd /opt/vim-ide
   git submodule update --init
-  [ ! -d /etc/vim ] && cp -i-vfR vim /etc/
-  cp -vf skel/.* /etc/skel
-  cp -vf profile.d/* /etc/profile.d/
+else
+  cd /opt/vim-ide
+  git pull
 fi
+
+[ ! -d /etc/vim ] && cp -vfR /opt/vim-ide/vim /etc/ || echo "SKIPPING: /etc/vim direcotry already exists"
+cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
+cp -vf /opt/vim-ide/skel/.pythonrc /etc/skel/
+cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
+cp -vf /opt/vim-ide/profile.d/* /etc/profile.d/
 
 ## clone and install oh-my-zsh
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

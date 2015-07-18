@@ -26,6 +26,6 @@ if [ ! -d ~/.oh-my-zsh ];then
   cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
   chsh -s /bin/zsh
 else
-  cd ~/oh-my-zsh
+  cd ~/.oh-my-zsh
   git pull
 fi

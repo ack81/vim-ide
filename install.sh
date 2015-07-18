@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## check for install zsh
-sudo yum -d0 -e0 install zsh vim-enhanced util-linux
+sudo yum -d0 -e0 -y install zsh vim-enhanced util-linux
 
 ## check for /opt/vim-ide and clone with submodules
 if [ ! -d /opt/vim-ide ];then

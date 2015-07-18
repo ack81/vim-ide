@@ -14,7 +14,7 @@ else
   sudo git pull
 fi
 
-[ ! -d /etc/vim ] && sudo cp -vfR /opt/vim-ide/vim /etc/ || echo "SKIPPING: /etc/vim direcotry already exists"
+sudo cp -vfR /opt/vim-ide/vim /etc/
 sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/
 sudo cp -vf /opt/vim-ide/skel/.pythonrc /etc/skel/
 sudo cp -vf /opt/vim-ide/skel/.irbrc /etc/skel/

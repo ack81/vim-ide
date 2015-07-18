@@ -24,7 +24,7 @@ if [ ! -d ~/.oh-my-zsh ];then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   [ -e ~/.zshrc ] || cp -vf ~/.zshrc ~/.zshrc.orig
   cp -vf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-  sudo chsh -s /bin/bash ${LOGNAME}
+  sudo chsh -s /bin/zsh ${LOGNAME}
 else
   cd ~/.oh-my-zsh
   git pull

@@ -17,6 +17,7 @@ perl-Perl-Critic \
 gcc \
 patch \
 perl \
+openldap-devel \
 python-devel \
 python \
 python-pip \

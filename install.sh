@@ -26,7 +26,9 @@ echo "Done"
 
 ## pip packages
 echo -n "Installing Python modules... "
-sudo pip install --upgrade --quiet requests[security]
+sudo pip install --upgrade --quiet setuptools
+sudo pip install --upgrade --quiet requests
+sudo pip install --quiet requests[security]
 sudo pip install --upgrade --quiet powerline-status
 sudo pip install --upgrade --quiet pylint-common
 sudo pip install --upgrade --quiet pylint

@@ -3,6 +3,8 @@
 ## check for install zsh
 echo -n "Installing Packages... "
 sudo yum -d0 -e0 -y install \
+epel-release
+sudo yum -d0 -e0 -y install \
 zsh \
 vim-enhanced \
 util-linux \
@@ -17,11 +19,13 @@ patch \
 perl \
 python-devel \
 python \
+python-pip \
 > /dev/null
 echo "Done"
 
 ## pip packages
 echo -n "Installing Python modules... "
+sudo pip install --upgrade --quiet requests[security]
 sudo pip install --upgrade --quiet powerline-status
 sudo pip install --upgrade --quiet pylint-common
 sudo pip install --upgrade --quiet pylint

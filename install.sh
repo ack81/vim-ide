@@ -18,6 +18,7 @@ gcc \
 patch \
 perl \
 openldap-devel \
+openssl-devel \
 python-devel \
 python \
 python-pip \
@@ -26,6 +27,7 @@ echo "Done"
 
 ## pip packages
 echo -n "Installing Python modules... "
+PYTHONWARNINGS="ignore:Unverified HTTPS request" ./do-insecure-request.py
 sudo pip install --upgrade --quiet setuptools
 sudo pip install --upgrade --quiet requests
 sudo pip install --quiet requests[security]

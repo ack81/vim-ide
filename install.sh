@@ -6,6 +6,7 @@ sudo yum -d0 -e0 -y install \
 epel-release
 sudo yum -d0 -e0 -y install \
 zsh \
+git \
 vim-enhanced \
 util-linux \
 fontconfig \
@@ -27,10 +28,11 @@ echo "Done"
 
 ## pip packages
 echo -n "Installing Python modules... "
-PYTHONWARNINGS="ignore:Unverified HTTPS request"
+export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 #sudo pip install --upgrade --quiet setuptools
 #sudo pip install --upgrade --quiet requests
 #sudo pip install --quiet requests[security]
+sudo pip install --quiet urllib3[secure]
 sudo pip install --upgrade --quiet powerline-status
 sudo pip install --upgrade --quiet pylint-common
 sudo pip install --upgrade --quiet pylint

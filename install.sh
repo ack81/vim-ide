@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 ## check for install zsh
 echo -n "Installing Packages... "
@@ -28,7 +28,7 @@ echo "Done"
 ## pip packages
 echo -n "Installing Python modules... "
 PYTHONWARNINGS="ignore:Unverified HTTPS request" ./do-insecure-request.py
-sudo pip install --upgrade --quiet setuptools
+#sudo pip install --upgrade --quiet setuptools
 sudo pip install --upgrade --quiet requests
 sudo pip install --quiet requests[security]
 sudo pip install --upgrade --quiet powerline-status

@@ -2,9 +2,9 @@
 
 ## check for install zsh
 echo -n "Installing Packages... "
-sudo yum -d0 -e0 -y install \
+sudo yum -d0 -e0 -q -y install \
 epel-release
-sudo yum -d0 -e0 -y install \
+sudo yum -d0 -e0 -q -y install \
 zsh \
 git \
 vim-enhanced \

@@ -28,7 +28,7 @@ echo "Done"
 
 ## pip packages
 echo -n "Installing Python modules... "
-export PYTHONWARNINGS="ignore:Unverified HTTPS request"
+export PYTHONWARNINGS="ignore:A true SSLContext object is not available"
 #sudo pip install --upgrade --quiet setuptools
 #sudo pip install --upgrade --quiet requests
 #sudo pip install --quiet requests[security]
@@ -94,9 +94,9 @@ else
   cd /opt/oh-my-zsh
   sudo git pull -q
 fi
-if [ ! -e ~/.oh-my-zsh ];then
-  cp -f ~/.zshrc ~/.zshrc.orig
-  cp -f /opt/oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-  sudo chsh -s /bin/zsh ${LOGNAME}
-fi
+#if [ ! -e ~/.oh-my-zsh ];then
+#  cp -f ~/.zshrc ~/.zshrc.orig
+#  cp -f /opt/oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+#  sudo chsh -s /bin/zsh ${LOGNAME}
+#fi
 echo "Done"

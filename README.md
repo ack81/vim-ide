@@ -5,6 +5,8 @@ Vim-IDE is collection of tools that work together in the zsh shell using powerli
 
 ### Prerequisites
 
+* Current support is only for CentOS 7
+* Future support for OSX and possibly CentOS 6
 * `zsh` `curl` `git` should be installed
 * sudo access
 

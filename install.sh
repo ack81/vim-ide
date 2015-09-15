@@ -29,10 +29,10 @@ echo "Done"
 ## pip packages
 echo -n "Installing Python modules... "
 export PYTHONWARNINGS="ignore:A true SSLContext object is not available"
-#sudo pip install --upgrade --quiet setuptools
-#sudo pip install --upgrade --quiet requests
-#sudo pip install --quiet requests[security]
 sudo pip install --upgrade --quiet pip
+sudo pip install --upgrade --quiet setuptools
+sudo pip install --upgrade --quiet requests
+#sudo pip install --quiet requests[security]
 sudo pip install --quiet urllib3[secure]
 sudo pip install --upgrade --quiet powerline-status
 sudo pip install --upgrade --quiet pylint-common

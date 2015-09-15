@@ -1,4 +1,4 @@
-!/bin/bash
+!#/bin/bash
 
 ## check for install zsh
 echo -n "Installing Packages... "

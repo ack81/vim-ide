@@ -95,6 +95,7 @@ else
   cd /opt/oh-my-zsh
   sudo git pull -q
 fi
+sudo chsh -s /bin/zsh ${LOGNAME}
 #if [ ! -e ~/.oh-my-zsh ];then
 #  cp -f ~/.zshrc ~/.zshrc.orig
 #  cp -f /opt/oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc

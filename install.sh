@@ -29,8 +29,8 @@ echo "Done"
 echo -n "Installing Python modules... "
 PYTHONWARNINGS="ignore:Unverified HTTPS request" ./do-insecure-request.py
 #sudo pip install --upgrade --quiet setuptools
-sudo pip install --upgrade --quiet requests
-sudo pip install --quiet requests[security]
+#sudo pip install --upgrade --quiet requests
+#sudo pip install --quiet requests[security]
 sudo pip install --upgrade --quiet powerline-status
 sudo pip install --upgrade --quiet pylint-common
 sudo pip install --upgrade --quiet pylint

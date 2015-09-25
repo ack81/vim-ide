@@ -9,7 +9,7 @@ set modeline
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_puppet_checkers=['puppet', 'puppetlint']
-let g:syntastic_puppet_puppetlint_args = '--no-autoloader_layout-check --no-documentation-check'
+let g:syntastic_puppet_puppetlint_args = '--no-autoloader_layout-check --no-documentation-check --no-80chars-check --no-class_inherits_from_params_class-check'
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers=['perlcritic']
 let g:syntastic_perl_perlcritic_args = '-4'
@@ -42,100 +42,92 @@ nnoremap <F3> :set number!<CR>
 
 " Set <F8> to run puppet-lint
 function Formatting()
+    normal! gg=G
     if &ft =~ "puppet"
-        normal! gg=G
+        "normal! gg=G
         g/=>/Tabularize/=>/
         nohlsearch
         "/.*\".*"\.*\&\(.*\$\)\@!.*/s/\"/\'/g
         " Fix double quoted strings containing no variables
-        g/.*\".*"\.*\&\(.*\$\)\@!.*/ s/\"/\'/g
-        nohlsearch
+        "g/.*\".*"\.*\&\(.*\$\)\@!.*/ s/\"/\'/g
+        "nohlsearch
         " Fix double quoted strings containing only variable
-        g/.*=>.\"\$\:*\w*\".*/s/\"//g
-	" Fix remaining double quoted strings where
-	" variable not enclosed in {}
-	g/.*=>.\".*\".*/ s/\$\(\w*\)/\$\{\1\}/g
-        nohlsearch
-        write
-    elseif &ft == 'python'
-        set tabstop=4 expandtab shiftwidth=4 softtabstop=4
-        normal! gg=G
-        write
-    elseif &ft == 'vim'
-        set tabstop=4 expandtab shiftwidth=4 softtabstop=4
-        "normal! gg=G
-    elseif &ft == 'ruby'
-        set tabstop=2 expandtab shiftwidth=2 softtabstop=2
-        normal! gg=G
-        write
-        "let g:ruby_indent_access_modifier_style = 'indent'
-    elseif &ft == 'perl'
-        set tabstop=5 expandtab shiftwidth=5 softtabstop=5
-        normal! gg=G
-        write
+        "g/.*=>.\"\$\:*\w*\".*/s/\"//g
+        " Fix remaining double quoted strings where
+        " variable not enclosed in {}
+        "g/.*=>.\".*\".*/ s/\$\(\w*\)/\$\{\1\}/g
+        "nohlsearch
+        "write
     endif
+    nohlsearch
+    write
 endfunction
 nnoremap <F8> :call Formatting()<CR>
 
-" Load FileType defaults and custom templates
+
+" load filetype defaults and custom templates
 if has("autocmd")
     autocmd!
-    " Remove auto comment on newline or enter command
-    autocmd BufNewFile,BufReadPre,BufRead,BufReadPost * exe "set formatoptions-=cro"
-    " Puppet
-    autocmd BufRead,BufNewFile *.pp set filetype=puppet
-    autocmd BufNewFile *.pp 0r /etc/vim/templates/template.pp
-    autocmd BufNewFile *.pp exe "g/filename/s//" .expand("%:t")
-    autocmd BufNewFile *.pp exe "g/classname/s//" .expand("%:t:r")
-    " Perl
-    autocmd BufNewFile *.pl 0r /etc/vim/templates/template.pl
-    autocmd BufNewFile *.pl exe "g/filename/s//" .expand("%:t")
-    " Python
-    autocmd BufNewFile *.py 0r /etc/vim/templates/template.py
-    "autocmd BufNewFile *.py exe "g/filename/s//" .expand("%:t")
+    " remove auto comment on newline or enter command
+    autocmd bufnewfile,bufreadpre,bufread,bufreadpost * exe "set formatoptions-=cro"
+    " puppet
+    autocmd bufread,bufnewfile *.pp set filetype=puppet
+    autocmd bufnewfile *.pp 0r /etc/vim/templates/template.pp
+    autocmd bufnewfile *.pp exe "g/filename/s//" .expand("%:t")
+    autocmd bufnewfile *.pp exe "g/classname/s//" .expand("%:t:r")
+    " perl
+    autocmd bufnewfile *.pl 0r /etc/vim/templates/template.pl
+    autocmd bufnewfile *.pl exe "g/filename/s//" .expand("%:t")
+    " python
+    autocmd bufnewfile *.py 0r /etc/vim/templates/template.py
+    "autocmd bufnewfile *.py exe "g/filename/s//" .expand("%:t")
+    autocmd FileType puppet set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+    autocmd FileType vim set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+    autocmd FileType ruby set tabstop=2 expandtab shiftwidth=2 softtabstop=2
+    autocmd FileType perl set tabstop=5 expandtab shiftwidth=5 softtabstop=5
 endif
 
-" Change title of terminal window to active filename
+" change title of terminal window to active filename
 set title
 
-" Alwaays display lower status line
+" alwaays display lower status line
 set laststatus=2
-set statusline=%f[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set statusline=%f[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%l\ %p
 
-" Always display the tabline
+" always display the tabline
 set showtabline=2
 
-" Replace tabs with spaces
+" replace tabs with spaces
 set expandtab
 
-" Do not return cursor to start of line
+" do not return cursor to start of line
 set nostartofline
 
-" Colors
+" colors
 "colorscheme solarized
 colorscheme koehler
 let g:airline_powerline_fonts = 1
 
-" No line wrap
+" no line wrap
 set nowrap
 
-" Syntax checking on
+" syntax checking on
 syntax on
 
-" Use case insensitive search, except when using capital letters
+" use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
 
-" Display white space with a char
+" display white space with a char
 set list
 
 " set listchars=trail:.
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-" Always display rule
+" always display rule
 set ruler
 
-" Always display line numbers
+" always display line numbers
 "set number
 set numberwidth=4
 
